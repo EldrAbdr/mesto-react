@@ -24,5 +24,5 @@
 
 **Ссылка на GitHub Pages**
 
-* [Mesto](https://eldrabdr.github.io/mesto/)
+* [Mesto](https://eldrabdr.github.io/mesto-react/)
 
