@@ -3,7 +3,15 @@ import { useState, useEffect, useContext } from "react";
 import Card from "./Card";
 import { CurrentUserContext } from "../context/CurrentUserContext";
 
-export default function Main(props) {
+export default function Main({
+  onEditAvatar,
+  onEditProfile,
+  onAddPlace,
+  cards,
+  onCardClick,
+  onCardLike,
+  onCardDelete,
+}) {
   const currentUser = useContext(CurrentUserContext);
 
   return (
@@ -19,7 +27,7 @@ export default function Main(props) {
             <button
               type="button"
               className="profile__avatar-edit-button hover-transparent"
-              onClick={props.onEditAvatar}
+              onClick={onEditAvatar}
             />
           </div>
           <div className="profile__text-info">
@@ -30,23 +38,23 @@ export default function Main(props) {
             type="button"
             aria-label="редактировать профиль"
             className="profile__edit-button hover-transparent"
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
           />
         </div>
         <button
           type="button"
           aria-label="добавить карточку"
           className="profile__add-button hover-transparent"
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
         />
       </section>
       <section className="cards">
-        {props.cards.map((card) => (
+        {cards.map((card) => (
           <Card
             card={card}
-            onCardClick={props.onCardClick}
-            onCardLike={props.onCardLike}
-            onCardDelete={props.onCardDelete}
+            onCardClick={onCardClick}
+            onCardLike={onCardLike}
+            onCardDelete={onCardDelete}
             key={card._id}
           />
         ))}

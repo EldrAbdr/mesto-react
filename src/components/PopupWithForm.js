@@ -1,11 +1,21 @@
-import {useState, useEffect} from "react"
+import { useState, useEffect } from "react";
 
-export default function PopupWithForm({name, isOpen, onClose, onSubmit, title, children, textButton, altTextButton}) {
-  const[isSubmitClick, setIsSubmitClick] = useState(false);
+export default function PopupWithForm({
+  title,
+  name,
+  onClose,
+  onSubmit,
+  isFormValid,
+  altTextButton,
+  textButton,
+  isOpen,
+  children,
+}) {
+  const [isSubmitClick, setIsSubmitClick] = useState(false);
 
   useEffect(() => {
     setIsSubmitClick(false);
-  },[isOpen]);
+  }, [isOpen]);
 
   function handleSubmit(e) {
     onSubmit(e);
@@ -13,9 +23,7 @@ export default function PopupWithForm({name, isOpen, onClose, onSubmit, title, c
   }
 
   return (
-    <div
-      className={`${name}-popup popup ${isOpen && "popup_active"}`}
-    >
+    <div className={`${name}-popup popup ${isOpen && "popup_active"}`}>
       <form
         action="#"
         method="get"
@@ -31,8 +39,12 @@ export default function PopupWithForm({name, isOpen, onClose, onSubmit, title, c
         />
         <h2 className="form__title">{title}</h2>
         {children}
-        <button type="submit" className="form__submit-button">
-          {isSubmitClick? altTextButton: textButton}
+        <button
+          type="submit"
+          className="form__submit-button"
+          disabled={isFormValid}
+        >
+          {isSubmitClick ? altTextButton : textButton}
         </button>
       </form>
     </div>
